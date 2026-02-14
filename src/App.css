@@ -1,0 +1,925 @@
+.app {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 1rem;
+  position: relative;
+}
+
+/* Help Button */
+.help-btn {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  border: 1px solid #444;
+  background: transparent;
+  color: #888;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0;
+  display: grid;
+  place-items: center;
+  z-index: 10;
+  box-sizing: border-box;
+}
+
+.help-btn:hover {
+  border-color: #2563eb;
+  color: #2563eb;
+  background-color: rgba(37, 99, 235, 0.1);
+}
+
+.app-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  padding-top: 2rem;
+  padding-bottom: 1rem;
+  gap: 0.5rem;
+}
+
+.app-header h1 {
+  margin: 0;
+  font-size: 3rem;
+  font-weight: 300;
+}
+
+.app-icon {
+  width: 6rem;
+  height: 6rem;
+}
+
+.header-actions {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.header-actions button {
+  flex: 1;
+  white-space: nowrap;
+}
+
+.add-river-btn,
+[data-theme="light"] .add-river-btn {
+  background-color: #2563eb;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.add-river-btn:hover,
+[data-theme="light"] .add-river-btn:hover {
+  background-color: #1d4ed8;
+}
+
+.refresh-btn {
+  background-color: transparent;
+  border: 1px solid #444;
+  color: inherit;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.refresh-btn:hover:not(:disabled) {
+  border-color: #666;
+}
+
+.refresh-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.error-banner {
+  background-color: #991b1b;
+  color: white;
+  padding: 0.75rem 1rem;
+  border-radius: 6px;
+  margin-bottom: 1rem;
+}
+
+.loading-state,
+.empty-state {
+  text-align: center;
+  padding: 3rem;
+  color: #888;
+}
+
+.empty-state p {
+  margin: 0.5rem 0;
+}
+
+/* River Table */
+.river-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.river-table th,
+.river-table td {
+  padding: 0.75rem;
+  text-align: left;
+  border-bottom: 1px solid #333;
+}
+
+.river-table th {
+  font-weight: 600;
+  color: #888;
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.river-table tbody tr:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+.river-table tbody tr.dragging {
+  background-color: rgba(37, 99, 235, 0.2);
+}
+
+.drag-handle {
+  cursor: grab;
+  user-select: none;
+  color: #666;
+  width: 30px;
+}
+
+.drag-handle:active {
+  cursor: grabbing;
+}
+
+.river-name {
+  font-weight: 500;
+}
+
+.expand-icon {
+  font-size: 0.7rem;
+  margin-right: 0.5rem;
+  color: #666;
+}
+
+.river-row.expanded {
+  background-color: rgba(255, 255, 255, 0.03);
+}
+
+.forecast-row {
+  background-color: rgba(255, 255, 255, 0.02);
+}
+
+.forecast-row td {
+  padding: 0 0.75rem 0.75rem 0.75rem;
+  border-bottom: 1px solid #333;
+}
+
+.forecast-row:hover {
+  background-color: rgba(255, 255, 255, 0.02);
+}
+
+.river-row {
+  cursor: pointer;
+}
+
+.river-level {
+  font-family: monospace;
+  font-size: 1rem;
+}
+
+.badge {
+  display: inline-block;
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.85rem;
+  background-color: rgba(136, 136, 136, 0.15);
+}
+
+.level-in-range {
+  background-color: rgba(34, 197, 94, 0.15);
+  color: #22c55e;
+}
+
+.level-out-of-range {
+  background-color: rgba(239, 68, 68, 0.15);
+  color: #ef4444;
+}
+
+.gauge-frozen {
+  color: #38bdf8;
+  font-family: inherit;
+  font-style: italic;
+}
+
+.river-trend {
+  font-size: 1rem;
+}
+
+.trend-rising {
+  background-color: rgba(59, 130, 246, 0.15);
+  color: #3b82f6;
+}
+
+.trend-falling {
+  background-color: rgba(249, 115, 22, 0.15);
+  color: #f97316;
+}
+
+.trend-stable {
+  background-color: rgba(136, 136, 136, 0.15);
+  color: #888;
+}
+
+.river-updated {
+  color: #888;
+  font-size: 0.875rem;
+}
+
+.river-actions {
+  width: 40px;
+}
+
+.edit-btn {
+  background: transparent;
+  border: none;
+  color: #888;
+  font-size: 1.1rem;
+  cursor: pointer;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+}
+
+.edit-btn:hover {
+  color: #2563eb;
+  background-color: rgba(37, 99, 235, 0.1);
+}
+
+/* Modal */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.75);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+}
+
+.modal-content {
+  background-color: #1a1a1a;
+  border-radius: 8px;
+  width: 100%;
+  max-width: 500px;
+  max-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #333;
+}
+
+.modal-content.modal-small {
+  max-width: 350px;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  border-bottom: 1px solid #333;
+}
+
+.modal-header h2 {
+  margin: 0;
+  font-size: 1.25rem;
+}
+
+.close-btn {
+  background: transparent;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: #888;
+  padding: 0;
+  line-height: 1;
+}
+
+.close-btn:hover {
+  color: white;
+}
+
+.modal-body {
+  padding: 1rem;
+  overflow-y: auto;
+  flex: 1;
+}
+
+.form-group {
+  margin-bottom: 1rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  color: #888;
+}
+
+.form-group select,
+.form-group input {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid #444;
+  border-radius: 6px;
+  background-color: #242424;
+  color: inherit;
+  font-size: 1rem;
+  box-sizing: border-box;
+}
+
+.form-group select:focus,
+.form-group input:focus {
+  outline: none;
+  border-color: #2563eb;
+}
+
+.loading,
+.error {
+  padding: 1rem;
+  text-align: center;
+}
+
+.error {
+  color: #ef4444;
+}
+
+.gauge-list {
+  max-height: 300px;
+  overflow-y: auto;
+  border: 1px solid #333;
+  border-radius: 6px;
+}
+
+.gauge-item {
+  padding: 0.75rem 1rem;
+  cursor: pointer;
+  border-bottom: 1px solid #333;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.gauge-item:last-child {
+  border-bottom: none;
+}
+
+.gauge-item:hover:not(.disabled) {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+.gauge-item.selected {
+  background-color: rgba(37, 99, 235, 0.2);
+  border-color: #2563eb;
+}
+
+.gauge-item.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.already-added {
+  font-size: 0.75rem;
+  color: #888;
+}
+
+.no-results {
+  padding: 1rem;
+  text-align: center;
+  color: #888;
+}
+
+.modal-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  border-top: 1px solid #333;
+}
+
+.modal-footer-right {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.delete-btn {
+  background-color: transparent;
+  border: 1px solid #991b1b;
+  color: #ef4444;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.delete-btn:hover {
+  background-color: rgba(239, 68, 68, 0.1);
+}
+
+/* Forecast Display */
+.forecast-display {
+  padding: 0.5rem 0;
+}
+
+.forecast-loading,
+.forecast-error,
+.forecast-empty {
+  text-align: center;
+  padding: 1rem;
+  color: #888;
+  font-size: 0.875rem;
+}
+
+.forecast-error {
+  color: #ef4444;
+}
+
+.forecast-graph {
+  text-align: center;
+}
+
+.forecast-graph img {
+  max-width: 100%;
+  border-radius: 4px;
+}
+
+.gauge-links {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0;
+}
+
+.gauge-link-btn {
+  padding: 0.4rem 0.75rem;
+  border: 1px solid #2563eb;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #2563eb;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.gauge-link-btn:hover {
+  background-color: rgba(37, 99, 235, 0.1);
+  border-color: #2563eb;
+}
+
+[data-theme="light"] .gauge-link-btn {
+  border-color: #2563eb;
+}
+
+.mobile-edit {
+  display: none;
+}
+
+[data-theme="light"] .river-row.expanded {
+  background-color: rgba(0, 0, 0, 0.02);
+}
+
+[data-theme="light"] .forecast-row {
+  background-color: rgba(0, 0, 0, 0.02);
+}
+
+[data-theme="light"] .forecast-row td {
+  border-bottom-color: #ddd;
+}
+
+@media (max-width: 600px) {
+  .app {
+    padding: 0.5rem;
+  }
+
+  .app-header h1 {
+    font-size: 2rem;
+  }
+
+  .river-table th,
+  .river-table td {
+    padding: 0.5rem 0.25rem;
+  }
+
+  .drag-handle {
+    width: 20px;
+  }
+
+  .river-updated,
+  .river-table th:nth-child(5) {
+    display: none;
+  }
+
+  .river-actions,
+  .river-table th:nth-child(6) {
+    display: none;
+  }
+
+  .river-name {
+    font-size: 0.85rem;
+  }
+
+  .river-level,
+  .river-trend {
+    font-size: 0.85rem;
+  }
+
+  .gauge-frozen {
+    font-size: 0.75rem;
+  }
+
+  .mobile-edit {
+    display: flex;
+    justify-content: center;
+    padding: 0.5rem 0;
+  }
+
+  .mobile-edit .edit-btn {
+    font-size: 0.9rem;
+    padding: 0.4rem 1rem;
+    border: 1px solid #444;
+    border-radius: 6px;
+  }
+
+  .modal-content {
+    margin: 0.5rem;
+  }
+
+  .modal-content.modal-small {
+    max-width: 100%;
+  }
+}
+
+.cancel-btn {
+  background-color: transparent;
+  border: 1px solid #444;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.cancel-btn:hover {
+  border-color: #666;
+}
+
+.add-btn,
+[data-theme="light"] .add-btn {
+  background-color: #2563eb;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.add-btn:hover:not(:disabled),
+[data-theme="light"] .add-btn:hover:not(:disabled) {
+  background-color: #1d4ed8;
+}
+
+.add-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Mode Toggle Tabs */
+.mode-toggle {
+  display: flex;
+  border: 1px solid #444;
+  border-radius: 6px;
+  overflow: hidden;
+  margin-bottom: 1rem;
+}
+
+.mode-toggle-btn {
+  flex: 1;
+  padding: 0.5rem 1rem;
+  border: none;
+  background-color: transparent;
+  color: #888;
+  cursor: pointer;
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: background-color 0.15s, color 0.15s;
+}
+
+.mode-toggle-btn:not(:last-child) {
+  border-right: 1px solid #444;
+}
+
+.mode-toggle-btn.active {
+  background-color: #2563eb;
+  color: white;
+}
+
+.mode-toggle-btn:hover:not(.active) {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+/* Gauge Picker Button */
+.gauge-picker-btn {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem;
+  border: 1px solid #444;
+  border-radius: 6px;
+  background-color: #242424;
+  color: inherit;
+  font-size: 1rem;
+  cursor: pointer;
+  text-align: left;
+}
+
+.gauge-picker-btn:hover {
+  border-color: #2563eb;
+}
+
+.gauge-picker-name {
+  font-weight: 500;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.gauge-picker-change {
+  color: #2563eb;
+  font-size: 0.8rem;
+  flex-shrink: 0;
+  margin-left: 0.5rem;
+}
+
+/* Formula Display (read-only) */
+.formula-display {
+  padding: 0.5rem 0.75rem;
+  background-color: rgba(37, 99, 235, 0.1);
+  border: 1px solid rgba(37, 99, 235, 0.25);
+  border-radius: 6px;
+  color: #93b4f5;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+/* Help Modal */
+.help-body h3 {
+  margin: 1.25rem 0 0.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.help-body h4 {
+  margin: 0.75rem 0 0.4rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #888;
+}
+
+.help-body p {
+  margin: 0 0 0.5rem;
+  line-height: 1.5;
+  color: #ccc;
+}
+
+.help-inline-btn {
+  display: inline-block;
+  background-color: #2563eb;
+  color: white;
+  padding: 0.15rem 0.5rem;
+  border-radius: 5px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  vertical-align: baseline;
+}
+
+.help-examples {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.help-example-row {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.help-example-desc {
+  font-size: 0.85rem;
+  color: #999;
+}
+
+/* Operation rows in custom gauge form */
+.operation-row {
+  border: 1px solid #333;
+  border-radius: 6px;
+  padding: 0.75rem;
+  margin-bottom: 0.75rem;
+}
+
+.operation-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.75rem;
+}
+
+.operation-label {
+  font-weight: 500;
+  font-size: 0.85rem;
+  color: #888;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.operation-remove-btn {
+  background: transparent;
+  border: none;
+  color: #ef4444;
+  cursor: pointer;
+  font-size: 0.8rem;
+  padding: 0.15rem 0.4rem;
+  border-radius: 4px;
+}
+
+.operation-remove-btn:hover {
+  background-color: rgba(239, 68, 68, 0.1);
+}
+
+.operation-row .form-group:last-child {
+  margin-bottom: 0;
+}
+
+.add-operation-btn {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px dashed #444;
+  border-radius: 6px;
+  background: transparent;
+  color: #2563eb;
+  cursor: pointer;
+  font-size: 0.875rem;
+  font-weight: 500;
+  margin-bottom: 1rem;
+}
+
+.add-operation-btn:hover {
+  border-color: #2563eb;
+  background-color: rgba(37, 99, 235, 0.05);
+}
+
+[data-theme="light"] .app-header {
+  border-bottom-color: #ddd;
+}
+
+[data-theme="light"] .river-table th,
+[data-theme="light"] .river-table td {
+  border-bottom-color: #ddd;
+}
+
+[data-theme="light"] .modal-content {
+  background-color: #fff;
+  border-color: #ddd;
+}
+
+[data-theme="light"] .modal-header,
+[data-theme="light"] .modal-footer {
+  border-color: #ddd;
+}
+
+[data-theme="light"] .form-group select,
+[data-theme="light"] .form-group input {
+  background-color: #fff;
+  border-color: #ddd;
+}
+
+[data-theme="light"] .gauge-list {
+  border-color: #ddd;
+}
+
+[data-theme="light"] .gauge-item {
+  border-bottom-color: #ddd;
+}
+
+[data-theme="light"] .mode-toggle {
+  border-color: #ddd;
+}
+
+[data-theme="light"] .mode-toggle-btn:not(:last-child) {
+  border-right-color: #ddd;
+}
+
+[data-theme="light"] .mode-toggle-btn:hover:not(.active) {
+  background-color: rgba(0, 0, 0, 0.03);
+}
+
+[data-theme="light"] .gauge-picker-btn {
+  background-color: #fff;
+  border-color: #ddd;
+}
+
+[data-theme="light"] .formula-display {
+  background-color: rgba(37, 99, 235, 0.06);
+  border-color: rgba(37, 99, 235, 0.2);
+  color: #1d4ed8;
+}
+
+[data-theme="light"] .operation-row {
+  border-color: #ddd;
+}
+
+[data-theme="light"] .add-operation-btn {
+  border-color: #ccc;
+}
+
+[data-theme="light"] .add-operation-btn:hover {
+  border-color: #2563eb;
+  background-color: rgba(37, 99, 235, 0.03);
+}
+
+[data-theme="light"] .refresh-btn {
+  border-color: #ddd;
+}
+
+[data-theme="light"] .help-btn {
+  border-color: #ddd;
+}
+
+[data-theme="light"] .help-body p {
+  color: #444;
+}
+
+[data-theme="light"] .help-example-desc {
+  color: #666;
+}
+
+/* Theme Toggle Switch */
+.theme-toggle-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 0.75rem;
+  margin-bottom: 0.75rem;
+  border-bottom: 1px solid #333;
+}
+
+.theme-toggle-label {
+  font-weight: 500;
+}
+
+.toggle-switch {
+  position: relative;
+  width: 2.75rem;
+  height: 1.5rem;
+  border-radius: 1rem;
+  border: none;
+  background-color: #444;
+  cursor: pointer;
+  padding: 0;
+  transition: background-color 0.2s;
+}
+
+.toggle-switch.active {
+  background-color: #2563eb;
+}
+
+.toggle-knob {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: calc(1.5rem - 6px);
+  height: calc(1.5rem - 6px);
+  border-radius: 50%;
+  background-color: white;
+  transition: transform 0.2s;
+}
+
+.toggle-switch.active .toggle-knob {
+  transform: translateX(1.25rem);
+}
+
+[data-theme="light"] .theme-toggle-row {
+  border-bottom-color: #ddd;
+}
+
+[data-theme="light"] .toggle-switch {
+  background-color: #ccc;
+}
+
+[data-theme="light"] .toggle-switch.active {
+  background-color: #2563eb;
+}
