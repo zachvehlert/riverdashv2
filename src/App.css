@@ -3,6 +3,13 @@
   margin: 0 auto;
   padding: 1rem;
   position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.app-main {
+  flex: 1;
 }
 
 /* Help Button */
@@ -159,6 +166,8 @@
 
 .river-name {
   font-weight: 500;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
 
 .expand-icon {
@@ -502,10 +511,58 @@
 @media (max-width: 600px) {
   .app {
     padding: 0.5rem;
+    overflow-x: hidden;
   }
 
   .app-header h1 {
     font-size: 2rem;
+  }
+
+  .river-table {
+    table-layout: fixed;
+    width: 100%;
+  }
+
+  /* Column widths via colgroup - set hidden cols to 0 */
+  .col-drag {
+    width: 24px;
+  }
+
+  .col-updated,
+  .col-actions {
+    width: 0;
+  }
+
+  .col-river,
+  .col-level,
+  .col-trend {
+    width: calc((100% - 24px) / 3);
+  }
+
+  /* Hide content of updated and actions columns */
+  .river-updated,
+  .river-actions,
+  .river-table th:nth-child(5),
+  .river-table th:nth-child(6) {
+    overflow: hidden;
+    padding: 0;
+    font-size: 0;
+    border: none;
+  }
+
+  .drag-handle {
+    padding: 0.5rem 0.25rem;
+  }
+
+  /* Prevent table content from causing layout shifts */
+  .river-table td {
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  /* Allow the forecast row to display properly */
+  .forecast-row td {
+    overflow: visible;
   }
 
   .river-table th,
@@ -513,22 +570,10 @@
     padding: 0.5rem 0.25rem;
   }
 
-  .drag-handle {
-    width: 20px;
-  }
-
-  .river-updated,
-  .river-table th:nth-child(5) {
-    display: none;
-  }
-
-  .river-actions,
-  .river-table th:nth-child(6) {
-    display: none;
-  }
-
   .river-name {
     font-size: 0.85rem;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
   }
 
   .river-level,
@@ -565,6 +610,7 @@
 .cancel-btn {
   background-color: transparent;
   border: 1px solid #444;
+  color: #fff;
   padding: 0.5rem 1rem;
   border-radius: 6px;
   cursor: pointer;
@@ -572,6 +618,26 @@
 
 .cancel-btn:hover {
   border-color: #666;
+}
+
+/* Help About Section */
+.help-about {
+  text-align: center;
+  padding-top: 1.5rem;
+  margin-top: 1.5rem;
+  border-top: 1px solid #333;
+  color: #888;
+  font-size: 0.8rem;
+}
+
+.help-about p {
+  margin: 0.25rem 0;
+}
+
+.bmc-button {
+  margin-top: 0.3rem;
+  height: 28px;
+  width: auto;
 }
 
 .add-btn,

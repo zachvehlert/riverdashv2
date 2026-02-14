@@ -59,6 +59,14 @@ export default function RiverTable({ rivers, onReorder, onEdit }) {
       onDragEnd={handleDragEnd}
     >
       <table className="river-table">
+        <colgroup>
+          <col className="col-drag" />
+          <col className="col-river" />
+          <col className="col-level" />
+          <col className="col-trend" />
+          <col className="col-updated" />
+          <col className="col-actions" />
+        </colgroup>
         <thead>
           <tr>
             <th></th>

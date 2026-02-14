@@ -1,3 +1,5 @@
+import bmcButton from '../assets/bmc-button.png';
+
 export default function HelpModal({ isOpen, onClose, theme, onToggleTheme }) {
   if (!isOpen) return null;
 
@@ -97,6 +99,12 @@ export default function HelpModal({ isOpen, onClose, theme, onToggleTheme }) {
             account or login is needed — just bookmark the page and your
             dashboard will be waiting for you.
           </p>
+
+          <div className="help-about">
+            <p>Flow data provided by USGS & NOAA</p>
+            <p>ZEhlert Software 2026</p>
+            <p><a href="https://buymeacoffee.com/zachvehlert" target="_blank" rel="noopener noreferrer"><img src={bmcButton} alt="Buy me a coffee" className="bmc-button" /></a></p>
+          </div>
         </div>
 
         <div className="modal-footer">
