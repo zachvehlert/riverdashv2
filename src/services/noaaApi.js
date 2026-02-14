@@ -1,5 +1,6 @@
-const USGS_BASE = '/api/usgs';
-const NOAA_BASE = '/api/noaa';
+const isDev = import.meta.env.DEV;
+const USGS_BASE = isDev ? '/api/usgs' : 'https://waterservices.usgs.gov/nwis';
+const NOAA_BASE = isDev ? '/api/noaa' : 'https://api.water.noaa.gov/nwps/v1';
 
 // USGS parameter codes
 const PARAM_CODES = {
